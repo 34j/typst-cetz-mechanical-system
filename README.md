@@ -1,4 +1,4 @@
-# Typst Hagaki
+# Typst CeTZ Mechanical System
 
 CeTZ library for drawing mechanical systems.
 
