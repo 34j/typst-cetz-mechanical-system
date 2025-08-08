@@ -5,10 +5,10 @@ CeTZ library for drawing mechanical systems.
 ## Usage
 
 ```typst
-#import "@preview/cetz-mechanical-system": spring, damper, wall
+#import "@preview/cetz-mechanical-system:0.1.0": spring, damper, wall
 #import "@preview/cetz:0.3.0"
 #import "@preview/circuiteria:0.1.0"
-// use circuiteria to utlize the wire, 
+// use circuiteria to utlize the wire,
 //which connects anchors with zigzag lines instead of straight lines
 
 #set page(paper: "a8", flipped: true)
