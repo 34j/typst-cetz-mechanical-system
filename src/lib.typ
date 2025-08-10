@@ -1,4 +1,4 @@
-#import "@preview/cetz:0.3.0"
+#import "@preview/cetz:0.3.4"
 
 #let get-vec-cross(a, b, width, inverse) = {
   import cetz.draw: *
