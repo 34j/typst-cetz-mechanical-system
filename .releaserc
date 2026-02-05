@@ -2,9 +2,13 @@ plugins:
   - "@semantic-release/commit-analyzer"
   - "@semantic-release/release-notes-generator"
   - "@semantic-release/changelog"
-  # - - "@semantic-release/exec"
-  #   - publishCmd:
-        
+  - - "@semantic-release/exec"
+    # app/build.gradle.kts
+    # Replace "version = \".*\"" with "version = \"${nextRelease.version}\""
+    # See below for contexts:
+    # https://github.com/semantic-release/semantic-release/blob/master/docs/developer-guide/plugin.md#context
+    - prepareCmd: |
+        sed -i -E "s/version = \".*\"/version = \"${nextRelease.version}\"/" app/build.gradle.kts
   - - "@semantic-release/git"
     # Commit changes to version files and changelog
     - assets:
