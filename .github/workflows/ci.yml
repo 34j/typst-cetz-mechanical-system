@@ -43,7 +43,7 @@ jobs:
             tests/**/out/*.png
             tests/**/ref/*.png
           retention-days: 5
-          
+
   release:
     name: Release
     # needs: test

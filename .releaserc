@@ -13,4 +13,5 @@ plugins:
     # Commit changes to version files and changelog
     - assets:
         - CHANGELOG.md
+        - typst.toml
   - - "@semantic-release/github"
