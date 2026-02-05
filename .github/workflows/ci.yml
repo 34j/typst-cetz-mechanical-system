@@ -1,0 +1,75 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  # Make sure commit messages follow the conventional commits convention:
+  # https://www.conventionalcommits.org
+  commitlint:
+    name: Lint Commit Messages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 0
+      - uses: wagoid/commitlint-github-action@b948419dd99f3fd78a6548d48f94e3df7f6bf3ed # v6.2.1
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - name: Install tytanic
+        uses: taiki-e/cache-cargo-install-action@v2
+        with:
+          tool: tytanic
+      - name: Run test suite
+        run: tt run
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: artifacts
+          path: |
+            tests/**/diff/*.png
+            tests/**/out/*.png
+            tests/**/ref/*.png
+          retention-days: 5
+          
+  release:
+    name: Release
+    # needs: test
+    runs-on: ubuntu-latest
+    environment:
+      name: release
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+      attestations: write
+      artifact-metadata: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+      - name: Release
+        if: github.ref_name == 'main'
+        run: npx --package=semantic-release --package=@semantic-release/exec --package=@semantic-release/git --package=@semantic-release/changelog semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release (Dry Run)
+        if: github.ref_name != 'main'
+        run: npx --package=semantic-release --package=@semantic-release/exec --package=@semantic-release/git --package=@semantic-release/changelog semantic-release --dry-run
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

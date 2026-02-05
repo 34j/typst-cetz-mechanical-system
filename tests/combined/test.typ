@@ -1,11 +1,4 @@
-# Typst CeTZ Mechanical System
-
-CeTZ library for drawing mechanical systems.
-
-## Usage
-
-```typst
-#import "@preview/cetz-mechanical-system:*.*.*": spring, damper, wall, wire
+#import "../../src/lib.typ": damper, spring, wall, wire
 #import "@preview/cetz:0.4.2"
 
 #set page(paper: "jis-b9", flipped: true)
@@ -17,7 +10,13 @@ CeTZ library for drawing mechanical systems.
   circle((2, 0), radius: 0.3, name: "mass2")
   spring((3, -0.5), name: "spring2", n: 7)
   damper((3.15, 0.5), name: "damper", inverse: true)
-  wall((5, -1.2), b: (5, 1.2), name: "wall", inverse: false, inverse-lines: false)
+  wall(
+    (5, -1.2),
+    b: (5, 1.2),
+    name: "wall",
+    inverse: false,
+    inverse-lines: false,
+  )
   line("mass1", "spring1")
   line("spring1", "mass2")
   line("spring1", "mass2")
@@ -31,7 +30,3 @@ CeTZ library for drawing mechanical systems.
   content("spring2.bottom", $k_1$)
   content("damper.top", $c_1$)
 })
-
-```
-
-![Preview](./tests/combined/out/1.png)
