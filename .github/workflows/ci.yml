@@ -67,9 +67,9 @@ jobs:
         if: github.ref_name == 'main'
         run: npx --package=semantic-release --package=@semantic-release/exec --package=@semantic-release/git --package=@semantic-release/changelog semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
       - name: Release (Dry Run)
         if: github.ref_name != 'main'
         run: npx --package=semantic-release --package=@semantic-release/exec --package=@semantic-release/git --package=@semantic-release/changelog semantic-release --dry-run
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
