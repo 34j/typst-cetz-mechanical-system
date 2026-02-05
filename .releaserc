@@ -9,6 +9,15 @@ plugins:
     # https://github.com/semantic-release/semantic-release/blob/master/docs/developer-guide/plugin.md#context
     - prepareCmd: |
         sed -i -E "s/version = \".*\"/version = \"${nextRelease.version}\"/" typst.toml
+    # Clone https://github.com/34j/packages to temporarily directory
+    # Create a directory
+    # packages/preview/mechanical-system-cetz-34j/${nextRelease.version}
+    # Create a PR
+    - publishCmd: |
+        git clone "https://github.com/34j/packages" /tmp/packages
+        mkdir -p "/tmp/packages/preview/mechanical-system-cetz-34j/${nextRelease.version}"
+        cp -r ./* "/tmp/packages/preview/mechanical-system-cetz-34j/${nextRelease.version}/"
+        cd /tmp/packages && git checkout -b "mechanical-system-cetz-34j:${nextRelease.version}" && git commit -am "mechanical-system-cetz-34j:${nextRelease.version}" && git push origin "mechanical-system-cetz-34j:${nextRelease.version}" && gh pr create --title "mechanical-system-cetz-34j:${nextRelease.version}" --repo "34j/packages" --fill
   - - "@semantic-release/git"
     # Commit changes to version files and changelog
     - assets:
