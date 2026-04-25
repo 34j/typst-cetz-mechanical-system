@@ -31,10 +31,13 @@ plugins:
         --title="$NAME:${nextRelease.version}"
         --repo="34j/packages"
         --head="$NAME/${nextRelease.version}"
-        --body="I am submitting\\n
-        - [ ] a new package\\n
-        - [x] an update for a package\\n
-        {nextRelease.notes}"
+        --body="I am submitting
+
+        - [ ] a new package
+
+        - [x] an update for a package
+        
+        ${nextRelease.notes}"
   - - "@semantic-release/git"
     # Commit changes to version files and changelog
     - assets:
