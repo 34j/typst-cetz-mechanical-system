@@ -26,3 +26,11 @@ repos:
       - id: detect-private-key
       - id: end-of-file-fixer
       - id: trailing-whitespace
+  - repo: https://github.com/34j/mirrors-prettier
+    rev: "v3.8.3"
+    hooks:
+      - id: prettier
+  - repo: https://github.com/typstyle-rs/pre-commit-typstyle
+    rev: "v0.14.4"
+    hooks:
+      - id: typstyle
