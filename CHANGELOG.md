@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/34j/typst-cetz-mechanical-system/compare/v1.0.22...v1.1.0) (2026-04-25)
+
+
+### Features
+
+* update documentaion, support latest cetz ([d0167bd](https://github.com/34j/typst-cetz-mechanical-system/commit/d0167bdc71dc826cd44afedad47a2dacd486455c))
+
 ## [1.0.22](https://github.com/34j/typst-cetz-mechanical-system/compare/v1.0.21...v1.0.22) (2026-04-25)
 
 
