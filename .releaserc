@@ -28,12 +28,13 @@ plugins:
         git commit -m "$NAME:${nextRelease.version}" && 
         git push origin "$NAME/${nextRelease.version}" && 
         gh pr create
-        --title "$NAME:${nextRelease.version}"
-        --repo "34j/packages" --head=34j:$NAME/${nextRelease.version}
-        --body "I am submitting\n
-        - [ ] a new package\n
-        - [x] an update for a package\n
-        {nextRelease.notes}" 
+        --title="$NAME:${nextRelease.version}"
+        --repo="34j/packages"
+        --head="$NAME/${nextRelease.version}"
+        --body="I am submitting\\n
+        - [ ] a new package\\n
+        - [x] an update for a package\\n
+        {nextRelease.notes}"
   - - "@semantic-release/git"
     # Commit changes to version files and changelog
     - assets:
