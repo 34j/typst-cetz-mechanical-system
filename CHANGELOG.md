@@ -1,3 +1,10 @@
+## [1.0.13](https://github.com/34j/typst-cetz-mechanical-system/compare/v1.0.12...v1.0.13) (2026-04-25)
+
+
+### Bug Fixes
+
+* wip ([3ff102b](https://github.com/34j/typst-cetz-mechanical-system/commit/3ff102bd3385e20f01d62fba25145c2002f1b91e))
+
 ## [1.0.12](https://github.com/34j/typst-cetz-mechanical-system/compare/v1.0.11...v1.0.12) (2026-04-25)
 
 
