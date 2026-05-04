@@ -11,7 +11,7 @@ plugins:
     - prepareCmd: |
         NAME=$(sed -nE 's/name\s*=\s*"(.*)"/\1/p' typst.toml) &&
         sed -i -E "s/version = \".*\"/version = \"${nextRelease.version}\"/" typst.toml &&
-        sed -i -E "s|@preview/$NAME:\*\.\*\.\*|@preview/$NAME:${nextRelease.version}|g" README.md
+        sed -i -E "s|@preview/$NAME:[^\"]*|@preview/$NAME:${nextRelease.version}|g" README.md
     # 0. Read package name from typst.toml
     # 1. Clone https://github.com/34j/packages to temporarily directory
     # 2. Create a version named directory
