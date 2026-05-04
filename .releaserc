@@ -25,7 +25,7 @@ plugins:
         mkdir -p "/tmp/packages/packages/preview/$NAME/${nextRelease.version}" &&
         cp -r ./* "/tmp/packages/packages/preview/$NAME/${nextRelease.version}/" &&
         rm -f "/tmp/packages/packages/preview/$NAME/${nextRelease.version}/renovate.json" &&
-        rm -rf "/tmp/packages/packages/preview/$NAME/${nextRelease.version}/tests" &&
+        find "/tmp/packages/packages/preview/$NAME/${nextRelease.version}/tests" -type f -name "*.typ" -delete &&
         cd /tmp/packages &&
         gh auth setup-git &&
         git switch -c "$NAME/${nextRelease.version}" &&
