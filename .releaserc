@@ -13,14 +13,16 @@ plugins:
     # 1. Clone https://github.com/34j/packages to temporarily directory
     # 2. Create a version named directory
     # 3. Copy all files to the version named directory
-    # 4. Move to the git repository
-    # 5. Somewhat need to run "gh auth setup-git" to setup git authentication for gh cli
-    # 6. Commit and create a PR
+    # 4. Remove development-only files from the published copy
+    # 5. Move to the git repository
+    # 6. Somewhat need to run "gh auth setup-git" to setup git authentication for gh cli
+    # 7. Commit and create a PR
       publishCmd: >
         NAME=$(sed -nE 's/name\s*=\s*"(.*)"/\1/p' typst.toml) &&
         git clone "https://github.com/34j/packages" /tmp/packages &&
-        mkdir -p "/tmp/packages/preview/$NAME/${nextRelease.version}" &&
-        cp -r ./* "/tmp/packages/preview/$NAME/${nextRelease.version}/" &&
+        mkdir -p "/tmp/packages/packages/preview/$NAME/${nextRelease.version}" &&
+        cp -r ./* "/tmp/packages/packages/preview/$NAME/${nextRelease.version}/" &&
+        rm -f "/tmp/packages/packages/preview/$NAME/${nextRelease.version}/renovate.json" &&
         cd /tmp/packages &&
         gh auth setup-git &&
         git switch -c "$NAME/${nextRelease.version}" &&
