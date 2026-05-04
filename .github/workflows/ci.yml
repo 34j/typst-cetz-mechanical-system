@@ -75,6 +75,23 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.sha }}
+      - name: Cache packages repository
+        id: cache-packages
+        uses: actions/cache@v4
+        with:
+          path: /tmp/packages
+          key: packages-repo-${{ github.run_id }}
+          restore-keys: |
+            packages-repo-
+      - name: Clone or update packages repository
+        run: |
+          if [ -d "/tmp/packages/.git" ]; then
+            cd /tmp/packages
+            git fetch origin
+            git reset --hard origin/main
+          else
+            git clone "https://github.com/34j/packages" /tmp/packages
+          fi
       - name: Release
         if: github.ref_name == 'main'
         run: npx --package=semantic-release --package=@semantic-release/exec --package=@semantic-release/git --package=@semantic-release/changelog semantic-release

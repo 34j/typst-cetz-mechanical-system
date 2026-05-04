@@ -22,7 +22,6 @@ plugins:
     # 7. Commit and create a PR
       publishCmd: >
         NAME=$(sed -nE 's/name\s*=\s*"(.*)"/\1/p' typst.toml) &&
-        git clone "https://github.com/34j/packages" /tmp/packages &&
         mkdir -p "/tmp/packages/packages/preview/$NAME/${nextRelease.version}" &&
         cp -r ./* "/tmp/packages/packages/preview/$NAME/${nextRelease.version}/" &&
         rm -f "/tmp/packages/packages/preview/$NAME/${nextRelease.version}/renovate.json" &&
@@ -34,7 +33,7 @@ plugins:
         git push origin "$NAME/${nextRelease.version}" &&
         gh pr create
         --title="$NAME:${nextRelease.version}"
-        --repo="typst/packages"
+        --repo="34j/packages"
         --head="$NAME/${nextRelease.version}"
         --body="I am submitting
 
