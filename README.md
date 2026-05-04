@@ -5,7 +5,7 @@ CeTZ library for drawing mechanical systems.
 ## Usage
 
 ```typst
-#import "@preview/mechanical-system-cetz-34j:1.1.5": spring, damper, wall, wire
+#import "@preview/mechanical-system-cetz-34j:1.1.6": spring, damper, wall, wire
 #import "@preview/cetz:0.5.0"
 
 #set page(paper: "jis-b9", flipped: true)
