@@ -5,10 +5,13 @@ plugins:
   - - "@semantic-release/exec"
     # typst.toml
     # Replace "version = \".*\"" with "version = \"${nextRelease.version}\""
+    # Replace README import version using the package name from typst.toml
     # See below for contexts:
     # https://github.com/semantic-release/semantic-release/blob/master/docs/developer-guide/plugin.md#context
     - prepareCmd: |
-        sed -i -E "s/version = \".*\"/version = \"${nextRelease.version}\"/" typst.toml
+        NAME=$(sed -nE 's/name\s*=\s*"(.*)"/\1/p' typst.toml) &&
+        sed -i -E "s/version = \".*\"/version = \"${nextRelease.version}\"/" typst.toml &&
+        sed -i -E "s|@preview/${NAME}:\*\.\*\.\*|@preview/${NAME}:${nextRelease.version}|g" README.md
     # 0. Read package name from typst.toml
     # 1. Clone https://github.com/34j/packages to temporarily directory
     # 2. Create a version named directory
@@ -31,7 +34,7 @@ plugins:
         git push origin "$NAME/${nextRelease.version}" &&
         gh pr create
         --title="$NAME:${nextRelease.version}"
-        --repo="34j/packages"
+        --repo="typst/packages"
         --head="$NAME/${nextRelease.version}"
         --body="I am submitting
 
