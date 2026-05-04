@@ -1,5 +1,5 @@
 #import "../../src/lib.typ": damper, spring, wall, wire
-#import "@preview/cetz:0.4.2"
+#import "@preview/cetz:0.5.0"
 
 #set page(paper: "jis-b9", flipped: true)
 #set align(center + horizon)

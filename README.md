@@ -34,4 +34,4 @@ CeTZ library for drawing mechanical systems.
 
 ```
 
-![Preview](./tests/combined/out/1.png)
+![Preview of the above code](./tests/combined/out/1.png)
